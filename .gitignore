@@ -1,0 +1,17 @@
+# Ignore build artifacts
+/dist/
+
+# Ignore Composer dependencies
+/vendor/
+/composer.lock
+
+# Ignore local PHPUnit configuration
+/phpunit.xml
+
+# Ignore PHP-CS-Fixer files
+/.php_cs
+/.php_cs.cache
+/cs_fixer_tmp_*
+
+# Ignore IDE files
+.idea

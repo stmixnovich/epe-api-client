@@ -1,0 +1,32 @@
+{
+  "name": "acquia/epe-api-client",
+  "description": "An EPE API client.",
+  "license": "proprietary",
+  "homepage": "https://github.com/acquia/epe-api-client",
+  "authors": [
+    {
+      "name": "CXEPE team",
+      "email": "cxepe@acquia.com",
+      "homepage": "https://confluence.acquia.com"
+    }
+  ],
+  "require": {
+    "php": "~7.1",
+    "guzzlehttp/guzzle": "~6.0",
+    "league/oauth2-client": "~2.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~5.7.0",
+    "friendsofphp/php-cs-fixer": "^2.11"
+  },
+  "autoload": {
+    "psr-4": {
+      "Acquia\\Epe\\Api\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Acquia\\Epe\\Api\\Test\\": "tests/"
+    }
+  }
+}
