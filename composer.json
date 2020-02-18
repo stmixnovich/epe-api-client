@@ -1,8 +1,8 @@
 {
-  "name": "acquia/epe-api-client",
+  "name": "stmixnovich/epe-api-client",
   "description": "An EPE API client.",
   "license": "proprietary",
-  "homepage": "https://github.com/acquia/epe-api-client",
+  "homepage": "https://github.com/stmixnovich/epe-api-client",
   "authors": [
     {
       "name": "CXEPE team",
