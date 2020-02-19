@@ -32,10 +32,10 @@ class Oauth2ClientFactory extends AbstractClientFactory
    *   An associative array of configuration values for a Guzzle client.
    */
   public static function createUsingClientCredentials(
-    $client_id,
-    $client_secret,
-    $token_url = null,
-    array $config = []
+      $client_id,
+      $client_secret,
+      $token_url = null,
+      array $config = []
   ) {
       $oauth_options = [
           'clientId'                => $client_id,
@@ -45,14 +45,14 @@ class Oauth2ClientFactory extends AbstractClientFactory
           'urlResourceOwnerDetails' => '',
       ];
 
-    $provider   = new GenericProvider($oauth_options);
-    $middleware = new GuzzleOAuth2Middleware($provider);
-    $stack      = HandlerStack::create();
-    $stack->push($middleware);
+      $provider   = new GenericProvider($oauth_options);
+      $middleware = new GuzzleOAuth2Middleware($provider);
+      $stack      = HandlerStack::create();
+      $stack->push($middleware);
 
-    $config['handler'] = $stack;
-    $config            = $config + static::getClientDefaults();
+      $config['handler'] = $stack;
+      $config            = $config + static::getClientDefaults();
 
-    new Client($config);
+      return new Client($config);
   }
 }

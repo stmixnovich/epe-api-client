@@ -61,9 +61,9 @@ class GuzzleOAuth2Middleware
    */
   public function __construct(GenericProvider $provider, array $options = [], $grant_type = 'client_credentials')
   {
-    $this->provider   = $provider;
-    $this->options    = $options;
-    $this->grant_type = $grant_type;
+      $this->provider   = $provider;
+      $this->options    = $options;
+      $this->grant_type = $grant_type;
   }
 
 
@@ -78,22 +78,15 @@ class GuzzleOAuth2Middleware
    */
   public function __invoke(callable $handler)
   {
-    $this->token = $this->token ?: $this->provider->getAccessToken($this->grant_type, $this->options);
+      $this->token = $this->token ?: $this->provider->getAccessToken($this->grant_type, $this->options);
 
-    // If the token has expired, we refresh it.
-    if ($this->token->hasExpired()) {
-      $this->token = $this->provider->getAccessToken('refresh_token', [
-        'refresh_token' => $this->token->getRefreshToken(),
-      ]);
-    }
+      return function ($request, array $options) use ($handler) {
+          if ($this->token && !$this->token->hasExpired()) {
+              $request = $this->addAuthorizationHeaders($request, $this->token);
+          }
 
-    return function ($request, array $options) use ($handler) {
-      if ($this->token && !$this->token->hasExpired()) {
-        $request = $this->addAuthorizationHeaders($request, $this->token);
-      }
-
-      return $handler($request, $options);
-    };
+          return $handler($request, $options);
+      };
   }
 
 
@@ -111,6 +104,6 @@ class GuzzleOAuth2Middleware
    */
   protected function addAuthorizationHeaders(RequestInterface $request, AccessToken $token)
   {
-    return $request->withHeader('Authorization', 'Bearer ' . $token->getToken());
+      return $request->withHeader('Authorization', 'Bearer ' . $token->getToken());
   }
 }

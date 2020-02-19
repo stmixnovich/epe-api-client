@@ -32,11 +32,11 @@ abstract class AbstractClientFactory
    */
   public static function getClientDefaults()
   {
-    return [
-      'base_uri'        => static::BASE_URI,
-      'connect_timeout' => static::DEFAULT_TIMEOUT,
-      'timeout'         => static::DEFAULT_TIMEOUT,
-      'read_timeout'    => static::DEFAULT_TIMEOUT,
-    ];
+      return [
+          'base_uri'        => static::BASE_URI,
+          'connect_timeout' => static::DEFAULT_TIMEOUT,
+          'timeout'         => static::DEFAULT_TIMEOUT,
+          'read_timeout'    => static::DEFAULT_TIMEOUT,
+      ];
   }
 }
